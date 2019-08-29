@@ -7,11 +7,13 @@
 
 #include "Arduino.h"
 #include "IO.h"
+#include <USBMIDI.h>
 
 class MIDI
 {
   public:
     MIDI();
+    void SendCC(uint8_t cc);
 };
 
 extern MIDI midi;

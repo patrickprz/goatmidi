@@ -4,12 +4,17 @@ int buttonState;
 int readingArray[6];
 int lastButtonStateArray[6];
 int lastDebounceTime = 0;   // the last time the output pin was toggled
-int debounceDelay = 100;
+int debounceDelay = 5;
 bool ControlButtons [6];
 uint8_t buttonsState [6];
 
 Buttons::Buttons(){
-
+    lastButtonStateArray[0] = HIGH;
+    lastButtonStateArray[1] = HIGH;
+    lastButtonStateArray[2] = HIGH;
+    lastButtonStateArray[3] = HIGH;
+    lastButtonStateArray[4] = HIGH;
+    lastButtonStateArray[5] = HIGH;
 }
 
 void Buttons::ReadInputs(){
