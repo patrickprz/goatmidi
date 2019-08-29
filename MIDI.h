@@ -8,7 +8,7 @@
 #include "Arduino.h"
 #include "IO.h"
 
-class MIDI_h
+class MIDI
 {
   public:
     MIDI();

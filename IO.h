@@ -6,4 +6,4 @@
 #define SW3 PB5
 #define SW4 PB4
 #define SW5 PB8
-#define SW6 PA15;
+#define SW6 PA15

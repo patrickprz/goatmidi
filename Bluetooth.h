@@ -2,7 +2,6 @@
   Bluetooth jdy-19
 */
 
-
 #ifndef Bluetooth_h
 #define Bluetooth_h
 
