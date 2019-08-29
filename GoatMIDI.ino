@@ -23,14 +23,24 @@ void setup() {
 void bluetoothHandle(){
   if (bluetooth.Available()) {
     receivedData = bluetooth.Read();
-    bluetooth.SendData(receivedData);
+    //bluetooth.SendData(receivedData);
 
     if(receivedData == "LED:ON"){
       digitalWrite(LED, LOW);
     }
 
-    if(receivedData == "LED:ON"){
+    if(receivedData == "LED:OFF"){
       digitalWrite(LED, HIGH);
+    }
+
+    if(receivedData.substring(0,6) == "SENDCC"){
+      bluetooth.SendData(receivedData.substring(6, sizeof(receivedData)));
+      midi.SendCC(receivedData.substring(6, sizeof(receivedData)).toInt());
+    }
+
+    if(receivedData.substring(0,8) == "SENDNOTE"){
+      bluetooth.SendData(receivedData.substring(8, sizeof(receivedData)));
+      midi.SendNote(receivedData.substring(8, sizeof(receivedData)).toInt());
     }
   }
 }

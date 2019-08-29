@@ -14,6 +14,7 @@ class MIDI
   public:
     MIDI();
     void SendCC(uint8_t cc);
+    void SendNote(uint8_t note);
 };
 
 extern MIDI midi;
