@@ -1,10 +1,15 @@
 #include "IO.h"
+#include "LEDs.h"
 #include "MIDI.h"
 #include "Buttons.h"
 #include "Bluetooth.h"
 
 String receivedData;
 uint8_t* buttonArray;
+
+uint8_t red;
+uint8_t green;
+uint8_t blue;
 
 void setup() {
   Serial2.begin(9600);
@@ -18,6 +23,17 @@ void setup() {
   pinMode(SW6, INPUT_PULLUP);
 
   pinMode(LED, OUTPUT);
+  digitalWrite(LED, HIGH);
+
+  pinMode(LED_R, OUTPUT);
+  pinMode(LED_G, OUTPUT);
+  pinMode(LED_B, OUTPUT);
+
+  red = 0;
+  green = 0;
+  blue = 0;
+  
+  leds.SetColor(red,green,blue);
 }
 
 void bluetoothHandle(){
@@ -41,6 +57,18 @@ void bluetoothHandle(){
     if(receivedData.substring(0,8) == "SENDNOTE"){
       bluetooth.SendData(receivedData.substring(8, sizeof(receivedData)));
       midi.SendNote(receivedData.substring(8, sizeof(receivedData)).toInt());
+    }
+
+    if(receivedData.substring(0,5) == "COLOR"){
+      bluetooth.SendData(receivedData.substring(5, 8));
+      bluetooth.SendData(receivedData.substring(8, 11));
+      bluetooth.SendData(receivedData.substring(11, 14));
+
+      red = (uint8_t)receivedData.substring(5, 8).toInt();
+      green = (uint8_t)receivedData.substring(8, 11).toInt();
+      blue = (uint8_t)receivedData.substring(11, 14).toInt();
+      
+      leds.SetColor(red,green,blue);
     }
   }
 }
@@ -82,4 +110,23 @@ void buttonHandle(){
 void loop() {
   bluetoothHandle();
   buttonHandle();  
+
+
+//  leds.Test(255,255,255);
+//  delay(delayTime);
+//  leds.Test(255,0,0);
+//  delay(delayTime);
+//  leds.Test(0,255,0);
+//  delay(delayTime);
+//  leds.Test(0,0,255);
+//  delay(delayTime);
+//  leds.Test(255,255,0);
+//  delay(delayTime);
+//  leds.Test(255,0,255);
+//  delay(delayTime);
+//  leds.Test(0,255,255);
+//  delay(delayTime);
+//  leds.Test(255,0,255);
+//  delay(delayTime);
+  
 }

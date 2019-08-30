@@ -19,10 +19,10 @@ Buttons::Buttons(){
 
 void Buttons::ReadInputs(){
     readingArray[0] = digitalRead(SW1);
-    readingArray[1] = digitalRead(SW4);
-    readingArray[2] = digitalRead(SW5);
-    readingArray[3] = digitalRead(SW2);
-    readingArray[4] = digitalRead(SW3);
+    readingArray[1] = digitalRead(SW2);
+    readingArray[2] = digitalRead(SW3);
+    readingArray[3] = digitalRead(SW4);
+    readingArray[4] = digitalRead(SW5);
     readingArray[5] = digitalRead(SW6);
 
     for(int i; i < 6; i++){ 
