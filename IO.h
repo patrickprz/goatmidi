@@ -14,3 +14,6 @@
 #define LED_R PA0
 #define LED_G PA1
 #define LED_B PA8
+
+//expresion
+#define EXPRESSION_PIN PA4

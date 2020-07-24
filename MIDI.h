@@ -15,6 +15,7 @@ class MIDI
     MIDI();
     void SendCC(uint8_t cc);
     void SendNote(uint8_t note);
+    void SendExpressionCC(uint8_t note, uint8_t val);
 };
 
 extern MIDI midi;
